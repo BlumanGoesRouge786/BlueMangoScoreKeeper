@@ -60,7 +60,7 @@ def t_tennis(e_score: int):
             #Decides who won based on who has the higher score.
             #The person with more points is usually the winner.
 
-            print(winner, "Player wins")
+            print(winner, "wins")
             #Finally tell the winner that they have won the game.
             #Congratulations you hit the ball better than the other guy.
 
@@ -98,4 +98,4 @@ if __name__ == "__main__":
 
     t_tennis(target)
     #Start the scorer with the target score.
-    #LET THE GAMES BEGIN.
+
