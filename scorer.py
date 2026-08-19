@@ -1,45 +1,30 @@
-#For the recoed this script was meant to have all types of scorers for differnt games.
-
 def t_tennis(e_score: int):
-#Vars: e_score = integer
-#Meant for stating at what score must you have in order to win
-    print ("Game to", e_score)
-    
-#initial starting points.
+    """Table tennis scorer: first to e_score with a two-point advantage."""
     h = 0
     a = 0
-
-#Below are the contents of what happens during the game.
-
-    while not (h or a) == e_score:
-#As log as none of the players'/teams' scores are not equivalent, game continues.
-        
-        p = input("P: ")
-#Meant for user to input whoever gets the point.
-#Note: Probably should have used a toggle but who cares.
-
+    print("Game to", e_score)
+    while True:
+        p = input("P (h/a): ").strip().lower()
         if p == "h":
-            h = h + 1
-#Basically, If the point belongd to home team, home team gets the point.
-        
-        if p == "a":
-            a = a + 1
-#The same thing happens here but in the favor of the away team.
+            h += 1
+        elif p == "a":
+            a += 1
+        else:
+            print("Invalid input  enter 'h' or 'a'")
+            continue
+        print("Home:" + str(h), "Away:" + str(a))
+        if (h >= e_score or a >= e_score) and abs(h - a) >= 2:
+            winner = "Home" if h > a else "Away"
+            print(winner, "Player wins")
+            break
 
-        print("Home:"+str(h),"Away:"+str(a))
-#Statement of current scores
 
-        if (h and a) == e_score - 1 and h == a:
-            e_score = e_score + 1
-            print ("Game to", e_score)
-
-#This is in the case where the normal scoring system where both teams are one point
-#below the End Point, the End Point gets increased by one only allowing  two point 
-#difference between the winner and loser.
-
-    if h == e_score :
-        w = "Home"
-    if a == e_score:
-        w = "Away"
-#And finally the winner determination.
-    print (w,"Player wins")
+if __name__ == "__main__":
+    import sys
+    target = 5
+    if len(sys.argv) > 1:
+        try:
+            target = int(sys.argv[1])
+        except ValueError:
+            print("Invalid target score, using default 5")
+    t_tennis(target)
