@@ -43,9 +43,9 @@ def t_tennis(e_score: int):
         if (h >= e_score or a >= e_score) and abs(h - a) >= 2:
             winner = HT if h > a else AT
             if winner[-1] == s:
-                verb = win
+                verb = "win"
             else:
-                verb = wins
+                verb = "wins"
             print(winner, verb)
             break
 
