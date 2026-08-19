@@ -10,7 +10,7 @@ def t_tennis(e_score: int):
         elif p == "a":
             a += 1
         else:
-            print("Invalid input  enter 'h' or 'a'")
+            print("Invalid input - enter 'h' or 'a'")
             continue
         print("Home:" + str(h), "Away:" + str(a))
         if (h >= e_score or a >= e_score) and abs(h - a) >= 2:
