@@ -3,9 +3,12 @@
 def t_tennis(e_score: int):
     """Table tennis scorer: first to e_score with a two-point advantage."""
     #Vars: e_score = integer
-    #Meant for stating at what score must you have in order to win
+
+    #Team name input
     HT=input("Home Player/Team: ")
     AT=input("Away Player/Team: ")
+    
+    #Meant for stating team names and at what score must you have in order to win
     print(f"{HT} vs {AT}")
     print("Game to", e_score)
 
@@ -39,7 +42,11 @@ def t_tennis(e_score: int):
 
         if (h >= e_score or a >= e_score) and abs(h - a) >= 2:
             winner = HT if h > a else AT
-            print(winner, "wins")
+            if winner[-1] == s:
+                verb = win
+            else:
+                verb = wins
+            print(winner, verb)
             break
 
         #This is in the case where the normal scoring system where both teams are one point
