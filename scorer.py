@@ -60,7 +60,7 @@ def t_tennis(e_score: int):
             #Decides who won based on who has the higher score.
             #The person with more points is usually the winner.
 
-            print(winner, "wins")
+            print(winner, "Player wins")
             #Finally tell the winner that they have won the game.
             #Congratulations you hit the ball better than the other guy.
 
@@ -68,14 +68,14 @@ def t_tennis(e_score: int):
             #Game is over so we stop the loop.
             #No more points because someone already won.
 
-        #This is in the case where the normal scoring system where both teams are one point
+        #This is in the case where the normal scoring system where both players are one point
         #below the End Point, the End Point gets increased by one only allowing  two point 
         #difference between the winner and loser.
         #This is also why the loop keeps going when both players are tied near the end.
 
     #And finally the winner determination.
     #The winner has already been determined above because I changed the code.
-    #Leaving this comment here anyway because why not.
+    #Leaving this comment here anyway.
 
 
 if __name__ == "__main__":
@@ -95,7 +95,17 @@ if __name__ == "__main__":
             print("Invalid target score, using default 5")
             #They typed something that isnt a number so we use 5 instead.
             #Because 5 is a perfectly respectable number.
+    else:
+        #If no score was given when starting the program, ask the user for one.
+        #This makes it easier for people who dont know how to use command line stuff.
+        try:
+            target = int(input("What score should the game go to? "))
+            #Turn the users answer into a integer because input is normally text.
+        except ValueError:
+            print("Invalid target score, using default 5")
+            #If they typed something that isnt a number we just use 5.
+            #Because apparently numbers are hard.
 
     t_tennis(target)
     #Start the scorer with the target score.
-
+    #LET THE GAMES BEGIN.
