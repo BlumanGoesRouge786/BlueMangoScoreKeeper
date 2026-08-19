@@ -3,7 +3,13 @@
 def t_tennis(e_score: int):
     """Table tennis scorer: first to e_score with a two-point advantage."""
     #Vars: e_score = integer
-    #Meant for stating at what score must you have in order to win
+
+    #Team name input
+    HT=input("Home Player/Team: ")
+    AT=input("Away Player/Team: ")
+    
+    #Meant for stating team names and at what score must you have in order to win
+    print(f"{HT} vs {AT}")
     print("Game to", e_score)
 
     #Getting the names of the two people playing the game.
