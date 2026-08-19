@@ -3,13 +3,7 @@
 def t_tennis(e_score: int):
     """Table tennis scorer: first to e_score with a two-point advantage."""
     #Vars: e_score = integer
-
-    #Team name input
-    HT=input("Home Player/Team: ")
-    AT=input("Away Player/Team: ")
-    
-    #Meant for stating team names and at what score must you have in order to win
-    print(f"{HT} vs {AT}")
+    #Meant for stating at what score must you have in order to win
     print("Game to", e_score)
 
     #Getting the names of the two people playing the game.
@@ -66,7 +60,7 @@ def t_tennis(e_score: int):
             #Decides who won based on who has the higher score.
             #The person with more points is usually the winner.
 
-            print(winner, "wins")
+            print(winner, "Player wins")
             #Finally tell the winner that they have won the game.
             #Congratulations you hit the ball better than the other guy.
 
