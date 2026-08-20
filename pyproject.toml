@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -7,11 +7,11 @@ name = "bluemangoscorekeeper"
 version = "0.1.0"
 description = "A simple Python scorekeeper for different games"
 readme = "README.md"
-requires-python = ">=3.8"
-license = {text = "MIT"}
+requires-python = ">=3.9"
+license = "MIT"
 
 [project.scripts]
-scorekeeper = "bluemangoscorekeeper.scorer:main"
+scorekeeper = "scorer:main"
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools]
+py-modules = ["scorer"]
