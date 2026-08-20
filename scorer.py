@@ -1,15 +1,30 @@
 #For the recoed this script was meant to have all types of scorers for differnt games.
 
+#Colors because plain text is boring.
+BLUE = "\033[94m"
+YELLOW = "\033[93m"
+GREEN = "\033[92m"
+RED = "\033[91m"
+PURPLE = "\033[95m"
+RESET = "\033[0m"
+
+
 def t_tennis(e_score: int):
     """Table tennis scorer: first to e_score with a two-point advantage."""
     #Vars: e_score = integer
     #Meant for stating at what score must you have in order to win
-    print("Game to", e_score)
+    print(f"{PURPLE}Game to {e_score}{RESET}")
 
     #Getting the names of the two people playing the game.
     #This is so we dont have to call them Home and Away the entire time.
-    home_player = input("Home player: ")
-    away_player = input("Away player: ")
+    home_player = input(f"{BLUE}Home player/team: {RESET}")
+    away_player = input(f"{YELLOW}Away player/team: {RESET}")
+
+    #Finding out whether the names belong to a player or a team.
+    #This is so the program knows whether to say "wins" or "win".
+    game_type = input(
+        f"{BLUE}Are you playing Singles or Doubles? (S/D): {RESET}"
+    ).strip().lower()
 
     #initial starting points.
     #Nobody has scored yet because the game has not started.
@@ -24,7 +39,7 @@ def t_tennis(e_score: int):
         #The game will keep going until somebody wins.
         #Hopefully this doesnt become an infinite loop.
 
-        p = input("P (h/a): ").strip().lower()
+        p = input(f"P ({BLUE}h{RESET}/{YELLOW}a{RESET}): ").strip().lower()
         #Meant for user to input whoever gets the point.
         #Note: Probably should have used a toggle but who cares.
         #h means home and a means away incase you forgor.
@@ -40,14 +55,17 @@ def t_tennis(e_score: int):
             #Away player gets a point because they did the thing.
 
         else:
-            print("Invalid input - enter 'h' or 'a'")
+            print(f"{RED}Invalid input - enter 'h' or 'a'{RESET}")
             #If you type something stupid the program will tell you.
             #This is better than the program just exploding.
 
             continue
             #Go back and ask again because that input was not very usefull.
 
-        print(home_player + ":" + str(h), away_player + ":" + str(a))
+        print(
+            f"{BLUE}{home_player}: {h}{RESET}",
+            f"{YELLOW}{away_player}: {a}{RESET}"
+        )
         #Statement of current scores
         #Prints the score so we know who is currently winning.
 
@@ -60,12 +78,8 @@ def t_tennis(e_score: int):
             #Decides who won based on who has the higher score.
             #The person with more points is usually the winner.
 
-            if not winner[-1] == "s" or winner[-5] == "James":
-                verb = "wins"
-            else:
-                verb = "win"
-
-            print(winner, verb)
+            word = "wins" if game_type == "S" else "win"
+            print(f"{GREEN}{winner} {word}{RESET}")
             #Finally tell the winner that they have won the game.
             #Congratulations you hit the ball better than the other guy.
 
@@ -97,7 +111,7 @@ if __name__ == "__main__":
             target = int(sys.argv[1])
             #Turn whatever they typed into a integer so the scorer can use it.
         except ValueError:
-            print("Invalid target score, using default 5")
+            print(f"{RED}Invalid target score, using default 5{RESET}")
             #They typed something that isnt a number so we use 5 instead.
             #Because 5 is a perfectly respectable number.
     else:
@@ -107,7 +121,7 @@ if __name__ == "__main__":
             target = int(input("What score should the game go to? "))
             #Turn the users answer into a integer because input is normally text.
         except ValueError:
-            print("Invalid target score, using default 5")
+            print(f"{RED}Invalid target score, using default 5{RESET}")
             #If they typed something that isnt a number we just use 5.
             #Because apparently numbers are hard.
 
