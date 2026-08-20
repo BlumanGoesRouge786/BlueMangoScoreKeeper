@@ -97,7 +97,7 @@ def t_tennis(e_score: int):
     #Leaving this comment here anyway.
 
 
-if __name__ == "__main__":
+def main():
     #This makes sure the scorer only starts when this file is actually run.
     #Python does some magic here that I dont fully understand.
     import sys
@@ -125,6 +125,10 @@ if __name__ == "__main__":
             #If they typed something that isnt a number we just use 5.
             #Because apparently numbers are hard.
 
-t_tennis(target)
+    t_tennis(target)
     #Start the scorer with the target score.
     #LET THE GAMES BEGIN.
+
+
+if __name__ == "__main__":
+    main()
