@@ -60,7 +60,12 @@ def t_tennis(e_score: int):
             #Decides who won based on who has the higher score.
             #The person with more points is usually the winner.
 
-            print(winner, "Player wins")
+            if not winner[-1] == "s" or winner[-5] == "James":
+                verb = "wins"
+            else:
+                verb = "win"
+
+            print(winner, verb)
             #Finally tell the winner that they have won the game.
             #Congratulations you hit the ball better than the other guy.
 
