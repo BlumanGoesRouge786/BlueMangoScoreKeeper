@@ -125,6 +125,6 @@ if __name__ == "__main__":
             #If they typed something that isnt a number we just use 5.
             #Because apparently numbers are hard.
 
-    t_tennis(target)
+t_tennis(target)
     #Start the scorer with the target score.
     #LET THE GAMES BEGIN.
