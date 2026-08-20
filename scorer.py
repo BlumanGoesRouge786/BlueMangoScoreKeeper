@@ -23,7 +23,7 @@ def t_tennis(e_score: int):
     #Finding out whether the names belong to a player or a team.
     #This is so the program knows whether to say "wins" or "win".
     game_type = input(
-        f"{BLUE}Are you playing Singles or Dobles? (S/D): {RESET}"
+        f"{BLUE}Are you playing Singles or Doubles? (S/D): {RESET}"
     ).strip().lower()
 
     #initial starting points.
