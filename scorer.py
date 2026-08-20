@@ -17,8 +17,18 @@ def t_tennis(e_score: int):
 
     #Getting the names of the two people playing the game.
     #This is so we dont have to call them Home and Away the entire time.
-    home_player = input(f"{BLUE}Home player: {RESET}")
-    away_player = input(f"{YELLOW}Away player: {RESET}")
+    home_player = input(f"{BLUE}Home player/team: {RESET}")
+    away_player = input(f"{YELLOW}Away player/team: {RESET}")
+
+    #Finding out whether the names belong to a player or a team.
+    #This is so the program knows whether to say "wins" or "win".
+    home_type = input(
+        f"{BLUE}Is {home_player} a player or team? (p/t): {RESET}"
+    ).strip().lower()
+
+    away_type = input(
+        f"{YELLOW}Is {away_player} a player or team? (p/t): {RESET}"
+    ).strip().lower()
 
     #initial starting points.
     #Nobody has scored yet because the game has not started.
@@ -72,7 +82,15 @@ def t_tennis(e_score: int):
             #Decides who won based on who has the higher score.
             #The person with more points is usually the winner.
 
-            print(f"{GREEN}{winner} Player wins{RESET}")
+            winner_type = home_type if h > a else away_type
+            #Figures out whether the winner is a player or a team.
+            #This determines whether we say "wins" or "win".
+
+            word = "wins" if winner_type == "p" else "win"
+            #Players win. Teams win.
+            #English is weird because apparently one letter matters.
+
+            print(f"{GREEN}{winner} {word}{RESET}")
             #Finally tell the winner that they have won the game.
             #Congratulations you hit the ball better than the other guy.
 
