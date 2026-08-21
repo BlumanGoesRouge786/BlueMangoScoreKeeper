@@ -103,7 +103,7 @@ def main():
     import sys
 
     #Default game score incase the user doesnt give one in the command line.
-    target = 5
+    target = 11
 
     if len(sys.argv) > 1:
         #If there is something after the file name, we assume its the score.
@@ -111,9 +111,9 @@ def main():
             target = int(sys.argv[1])
             #Turn whatever they typed into a integer so the scorer can use it.
         except ValueError:
-            print(f"{RED}Invalid target score, using default 5{RESET}")
-            #They typed something that isnt a number so we use 5 instead.
-            #Because 5 is a perfectly respectable number.
+            print(f"{RED}Invalid target score, using default 11{RESET}")
+            #They typed something that isnt a number so we use 11 instead.
+            #Because 5 is no longer a perfectly respectable number.
     else:
         #If no score was given when starting the program, ask the user for one.
         #This makes it easier for people who dont know how to use command line stuff.
@@ -121,9 +121,8 @@ def main():
             target = int(input("What score should the game go to? "))
             #Turn the users answer into a integer because input is normally text.
         except ValueError:
-            print(f"{RED}Invalid target score, using default 5{RESET}")
-            #If they typed something that isnt a number we just use 5.
-            #Because apparently numbers are hard.
+            print(f"{RED}Invalid target score, using default 11{RESET}")
+            #If they typed something that isnt a number we just use 11.
 
     t_tennis(target)
     #Start the scorer with the target score.
