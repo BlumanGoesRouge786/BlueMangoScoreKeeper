@@ -8,7 +8,11 @@ RED = "\033[91m"
 PURPLE = "\033[95m"
 RESET = "\033[0m"
 
-
+class PID:
+    def _init_(self, team, player):
+        self.team = team
+        self.player = player
+        
 def t_tennis(e_score: int):
     """Table tennis scorer: first to e_score with a two-point advantage."""
     #Vars: e_score = integer
