@@ -34,7 +34,6 @@ def t_tennis(e_score: int):
         h_team_player_2 = home_player
         a_team_player_1 = away_player
         a_team_player_2 = away_player
-    p_111=
     #initial starting points.
     #Nobody has scored yet because the game has not started.
     h = 0
