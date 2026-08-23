@@ -50,35 +50,35 @@ def t_tennis(e_score: int):
         score = h+a
         inddig = ((score/8):.3)-floor(score)
         if inddig == 0.000:
-            player = h_player_1
+            player = h_team_player_1
             serve = "1"
             ord = "st"
         elif inddig == 0.125:
-            player = h_player_1
+            player = h_team_player_1
             serve = "2"
             ord = "nd"
         elif inddig == 0.250:
-            player = a_player_1
+            player = a_team_player_1
             serve = "1"
             ord = "st"
         elif inddig == 0.375:
-            player = a_player_2
+            player = a_team_player_2
             serve = "2"
             ord = "nd"
         elif inddig == 0.500:
-            player = h_player_2
+            player = h_team_player_2
             serve = "1"
             ord = "st"
         elif inddig == 0.625:
-            player = h_player_2
+            player = h_team_player_2
             serve = "2"
             ord = "nd"
         elif inddig == 0.750:
-            player = a_player_2
+            player = a_team_player_2
             serve = "1"
             ord = "st"
         elif inddig == 0.875:
-            player = a_player_2
+            player = a_team_player_2
             serve = "2"
             ord = "nd"
         print(f"{player}'s {serve}{ord} serve")
