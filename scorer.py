@@ -1,5 +1,5 @@
-#For the recoed this script was meant to have all types of scorers for differnt games.
-
+import math
+from math import floor
 #Colors because plain text is boring.
 BLUE = "\033[94m"
 YELLOW = "\033[93m"
@@ -7,8 +7,6 @@ GREEN = "\033[92m"
 RED = "\033[91m"
 PURPLE = "\033[95m"
 RESET = "\033[0m"
-
-
 def t_tennis(e_score: int):
     """Table tennis scorer: first to e_score with a two-point advantage."""
     #Vars: e_score = integer
@@ -23,9 +21,20 @@ def t_tennis(e_score: int):
     #Finding out whether the names belong to a player or a team.
     #This is so the program knows whether to say "wins" or "win".
     game_type = input(
-        f"{BLUE}Are you playing Singles or Doubles? (S/D): {RESET}"
+        f"{BLUE}Are you playing Singles or Doubles? (s/d): {RESET}"
     ).strip().lower()
 
+    if game_type == "d":
+        h_team_player_1 = input(f"Player 1 in {home_player}: ")
+        h_team_player_2 = input(f"Player 2 in {home_player}: ")
+        a_team_player_1 = input(f"Player 1 in {away_player}: ")
+        a_team_player_2 = input(f"Player 2 in {away_player}: ")
+    else:
+        h_team_player_1 = home_player
+        h_team_player_2 = home_player
+        a_team_player_1 = away_player
+        a_team_player_2 = away_player
+    p_111=
     #initial starting points.
     #Nobody has scored yet because the game has not started.
     h = 0
@@ -38,12 +47,47 @@ def t_tennis(e_score: int):
         #As log as none of the players'/teams' scores are not equivalent, game continues.
         #The game will keep going until somebody wins.
         #Hopefully this doesnt become an infinite loop.
-
+        score = h+a
+        inddig = ((score/8):.3)-floor(score)
+        if inddig == 0.000:
+            player = h_player_1
+            serve = "1"
+            ord = "st"
+        elif inddig == 0.125:
+            player = h_player_1
+            serve = "2"
+            ord = "nd"
+        elif inddig == 0.250:
+            player = a_player_1
+            serve = "1"
+            ord = "st"
+        elif inddig == 0.375:
+            player = a_player_2
+            serve = "2"
+            ord = "nd"
+        elif inddig == 0.500:
+            player = h_player_2
+            serve = "1"
+            ord = "st"
+        elif inddig == 0.625:
+            player = h_player_2
+            serve = "2"
+            ord = "nd"
+        elif inddig == 0.750:
+            player = a_player_2
+            serve = "1"
+            ord = "st"
+        elif inddig == 0.875:
+            player = a_player_2
+            serve = "2"
+            ord = "nd"
+        print(f"{player}'s {serve}{ord} serve")
+        
         p = input(f"P ({BLUE}h{RESET}/{YELLOW}a{RESET}): ").strip().lower()
         #Meant for user to input whoever gets the point.
         #Note: Probably should have used a toggle but who cares.
-        #h means home and a means away incase you forgor.
-
+        #"h" means home and "a" means away incase you forgot.
+        
         if p == "h":
             h += 1
             #Basically, If the point belongd to home team, home team gets the point.
@@ -97,13 +141,13 @@ def t_tennis(e_score: int):
     #Leaving this comment here anyway.
 
 
-if __name__ == "__main__":
+def main():
     #This makes sure the scorer only starts when this file is actually run.
     #Python does some magic here that I dont fully understand.
     import sys
 
     #Default game score incase the user doesnt give one in the command line.
-    target = 5
+    target = 11
 
     if len(sys.argv) > 1:
         #If there is something after the file name, we assume its the score.
@@ -111,9 +155,9 @@ if __name__ == "__main__":
             target = int(sys.argv[1])
             #Turn whatever they typed into a integer so the scorer can use it.
         except ValueError:
-            print(f"{RED}Invalid target score, using default 5{RESET}")
-            #They typed something that isnt a number so we use 5 instead.
-            #Because 5 is a perfectly respectable number.
+            print(f"{RED}Invalid target score, using default 11{RESET}")
+            #They typed something that isnt a number so we use 11 instead.
+            #Because 5 is no longer a perfectly respectable number.
     else:
         #If no score was given when starting the program, ask the user for one.
         #This makes it easier for people who dont know how to use command line stuff.
@@ -121,10 +165,13 @@ if __name__ == "__main__":
             target = int(input("What score should the game go to? "))
             #Turn the users answer into a integer because input is normally text.
         except ValueError:
-            print(f"{RED}Invalid target score, using default 5{RESET}")
-            #If they typed something that isnt a number we just use 5.
-            #Because apparently numbers are hard.
+            print(f"{RED}Invalid target score, using default 11{RESET}")
+            #If they typed something that isnt a number we just use 11.
 
-t_tennis(target)
+    t_tennis(target)
     #Start the scorer with the target score.
     #LET THE GAMES BEGIN.
+
+
+if __name__ == "__main__":
+    main()
