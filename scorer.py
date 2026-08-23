@@ -1,5 +1,5 @@
-#For the recoed this script was meant to have all types of scorers for differnt games.
-
+import math
+from math import floor
 #Colors because plain text is boring.
 BLUE = "\033[94m"
 YELLOW = "\033[93m"
@@ -7,12 +7,6 @@ GREEN = "\033[92m"
 RED = "\033[91m"
 PURPLE = "\033[95m"
 RESET = "\033[0m"
-
-class PID:
-    def _init_(self, team, player):
-        self.team = team
-        self.player = player
-        
 def t_tennis(e_score: int):
     """Table tennis scorer: first to e_score with a two-point advantage."""
     #Vars: e_score = integer
@@ -27,9 +21,23 @@ def t_tennis(e_score: int):
     #Finding out whether the names belong to a player or a team.
     #This is so the program knows whether to say "wins" or "win".
     game_type = input(
-        f"{BLUE}Are you playing Singles or Doubles? (S/D): {RESET}"
+        f"{BLUE}Are you playing Singles or Doubles? (s/d): {RESET}"
     ).strip().lower()
 
+    if game_type == "d":
+        h_team_player_1 = input(f"Player 1 in {home_player}: ")
+        h_team_player_2 = input(f"Player 2 in {home_player}: ")
+        a_team_player_1 = input(f"Player 1 in {away_player}: ")
+        a_team_player_2 = input(f"Player 2 in {away_player}: ")
+    else:
+    p_000= 
+    p_001=
+    p_010=
+    p_011=
+    p_100=
+    p_101=
+    p_110=
+    p_111=
     #initial starting points.
     #Nobody has scored yet because the game has not started.
     h = 0
@@ -42,12 +50,47 @@ def t_tennis(e_score: int):
         #As log as none of the players'/teams' scores are not equivalent, game continues.
         #The game will keep going until somebody wins.
         #Hopefully this doesnt become an infinite loop.
-
+        score = h+a
+        inddig = ((score/8):.3)-floor(score)
+        if inddig == 0.000:
+            player = h_player_1
+            serve = "1"
+            ord = "st"
+        elif inddig == 0.125:
+            player = h_player_1
+            serve = "2"
+            ord = "nd"
+        elif inddig == 0.250:
+            player = a_player_1
+            serve = "1"
+            ord = "st"
+        elif inddig == 0.375:
+            player = a_player_2
+            serve = "2"
+            ord = "nd"
+        elif inddig == 0.500:
+            player = h_player_2
+            serve = "1"
+            ord = "st"
+        elif inddig == 0.625:
+            player = h_player_2
+            serve = "2"
+            ord = "nd"
+        elif inddig == 0.750:
+            player = a_player_2
+            serve = "1"
+            ord = "st"
+        elif inddig == 0.875:
+            player = a_player_2
+            serve = "2"
+            ord = "nd"
+        print(f"{player}'s {serve}{ord} serve")
+        
         p = input(f"P ({BLUE}h{RESET}/{YELLOW}a{RESET}): ").strip().lower()
         #Meant for user to input whoever gets the point.
         #Note: Probably should have used a toggle but who cares.
-        #h means home and a means away incase you forgor.
-
+        #"h" means home and "a" means away incase you forgot.
+        
         if p == "h":
             h += 1
             #Basically, If the point belongd to home team, home team gets the point.
