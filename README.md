@@ -2,13 +2,21 @@
 
 This is a program designed to allow user input to simulate a scoreboard that keeps track of the... well... scores.
 
+**We’re happy to announce that BlueMangoScoreKeeper is now on PyPI! Just install the program using** `pip install bluemangoscorekeeper` 
+
 ## Features
-- Defining he actual "t_tennis" function that contains everything for the code. [^1]
-- Under the function itself is the following:
-- Game type, players, and target score;
-- Loop for during game input of scores
-- And winner determination
-- Then the function itself actually... functioning.
+- Table tennis scoring
+- Custom target scores
+- Two-point advantage
+- Singles and doubles support
+- Custom player/team names
+- Manual point input
+- Live score display
+- Input validation
+- Colored terminal output
+- Command-line interface
+- Installable CLI
+- Python 3.9+ support
 
 ## How It Works
 When running the code immediately, for now, the code accepts manual user input from the user every time somebody scores. It does this during the game by using loop to continue until somebody reaches the target score.
@@ -21,13 +29,25 @@ When running the code immediately, for now, the code accepts manual user input f
 4. Beginning the game
    - Asking who scored the point
    - Stating current scores [^2]
-5. Declaration of independence... I mean... winner
+5. Declaration of ~~independence~~... I mean... winner
 
 ## Requirements
-- python 3.14.7(so far i've seen)
+- Python 3.9+
 
 ## Build Instructions
-Ok I will do this
+1. Clone the repo:
+   `git clone https://github.com/BlumanGoesRouge786/BlueMangoScoreKeeper.git`
+
+2. Enter the project directory:
+   `cd BlueMangoScoreKeeper`
+
+3. Install the build tool:
+   `python -m pip install build`
+
+4. Build the package:
+   `python -m build`
+
+The built packages will be placed in the `dist/` directory
 
 ## Roadmap
 
@@ -39,14 +59,14 @@ Ok I will do this
 - [ ] GUI basic setup
 - [ ] GUI enhancement
 - [ ] ball tracking
-- [ ] Accurate switch between Open CU to BlurBall
+- [ ] Accurate switch between Open CV and BlurBall
 - [ ] Table and House detection
 - [ ] Ball altitude tracking
 - [ ] Actual score tracking
 - [ ] Manual fault input
 - [ ] Finallization
 ## Background
-This program was created, at first, as a "multi-sport" scorekeeper that would be used for multiple different sports and scoring systems in general. But eventually, just to keep it simple, we just began with table-tennis since most other sports required time tracking libraries and... yeah... it's a bit too much if we want anything to get done in time. So, the original creator I've decided to stick with table-tennis for a start. [^1]
+This program was created, at first, as a "multi-sport" scorekeeper that would be used for multiple different sports and scoring systems in general. But eventually, just to keep it simple, we just began with table-tennis since most other sports required time tracking libraries and... yeah... it's a bit too much if we want anything to get done in time. So, I've decided to stick with table-tennis for a start. [^1]
 
 Other sports and scoring systems are to be added to code in a future time.
 [^1]: Originally intended to support multiple sports
