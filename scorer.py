@@ -30,13 +30,10 @@ def t_tennis(e_score: int):
         a_team_player_1 = input(f"Player 1 in {away_player}: ")
         a_team_player_2 = input(f"Player 2 in {away_player}: ")
     else:
-    p_000= 
-    p_001=
-    p_010=
-    p_011=
-    p_100=
-    p_101=
-    p_110=
+        h_team_player_1 = home_player
+        h_team_player_2 = home_player
+        a_team_player_1 = away_player
+        a_team_player_2 = away_player
     p_111=
     #initial starting points.
     #Nobody has scored yet because the game has not started.
