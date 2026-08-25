@@ -47,7 +47,7 @@ def t_tennis(e_score: int):
         #The game will keep going until somebody wins.
         #Hopefully this doesnt become an infinite loop.
         score = h+a
-        inddig = ((score/8))-floor(score)
+        inddig = ((score/8))-floor(score/8)
         if inddig == 0.000:
             player = h_team_player_1
             serve = "1"
