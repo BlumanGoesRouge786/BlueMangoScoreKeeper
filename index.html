@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BlueMangoScoreKeeper</title>
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            min-height: 100vh;
+            background: #0b1020;
+            color: #e5e7eb;
+            font-family: system-ui, sans-serif;
+        }
+
+        main {
+            max-width: 950px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: #9ca3af;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .terminal-frame {
+            overflow: hidden;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            background: #05070d;
+        }
+
+        .terminal-header {
+            padding: 12px 16px;
+            background: #111827;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        #terminal {
+            height: 520px;
+            padding: 12px;
+        }
+
+        .status {
+            padding: 10px 14px;
+            background: #111827;
+            color: #9ca3af;
+            font-size: 12px;
+        }
+
+        button {
+            margin-top: 14px;
+            padding: 10px 16px;
+            border: 0;
+            border-radius: 7px;
+            background: #2563eb;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: wait;
+        }
+
+        .notice {
+            margin-top: 14px;
+            color: #9ca3af;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+<main>
+    <h1>BlueMangoScoreKeeper - by Wai</h1>
+    <p class="subtitle">python in the browser, woah</p>
+
+    <div class="terminal-frame">
+        <div class="terminal-header">
+            python session
+        </div>
+
+        <div id="terminal"></div>
+
+        <div class="status" id="status">
+            Loading Python runtime...
+        </div>
+    </div>
+
+    <button id="restart" disabled>Restart match</button>
+
+    <p class="notice">
+        coded by the GOAT waiwai. web interfacd made by andrei.
+    </p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.js"></script>
+<script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+
+<script>
+const terminal = new Terminal({
+    cursorBlink: true,
+    convertEol: true,
+    fontSize: 15,
+    fontFamily: 'monospace',
+    theme: {
+        background: '#05070d',
+        foreground: '#e5e7eb',
+        cursor: '#ffffff'
+    }
+});
+
+terminal.open(document.getElementById('terminal'));
+
+const status = document.getElementById('status');
+const restartButton = document.getElementById('restart');
+
+let pyodide;
+let running = false;
+
+function writeToTerminal(text) {
+    terminal.write(text.replace(/\n/g, '\r\n'));
+}
+
+async function startMatch() {
+    if (running) {
+        return;
+    }
+
+    running = true;
+    restartButton.disabled = true;
+    terminal.reset();
+
+    try {
+        const source = await fetch('scorer.py');
+
+        if (!source.ok) {
+            throw new Error('Could not load scorer.py');
+        }
+
+        const pythonSource = await source.text();
+
+        pyodide.setStdout({
+            batched: text => writeToTerminal(text)
+        });
+
+        pyodide.setStderr({
+            batched: text => writeToTerminal(text)
+        });
+
+        pyodide.globals.set(
+            'browser_input',
+            () => {
+                const answer = window.prompt('Enter your response:');
+                return answer === null ? '' : answer;
+            }
+        );
+
+        const adapter = `
+import sys
+import builtins
+
+_original_input = builtins.input
+
+def input(prompt=""):
+    if prompt:
+        sys.stdout.write(prompt)
+        sys.stdout.flush()
+    return browser_input()
+`;
+
+        await pyodide.runPythonAsync(adapter);
+
+        await pyodide.runPythonAsync(pythonSource);
+
+        status.textContent = 'Match finished.';
+    } catch (error) {
+        writeToTerminal('\nERROR: ' + String(error) + '\n');
+        status.textContent = 'Execution stopped.';
+    } finally {
+        running = false;
+        restartButton.disabled = false;
+    }
+}
+
+async function initialize() {
+    try {
+        pyodide = await loadPyodide();
+
+        status.textContent = 'Python ready. Starting scorekeeper...';
+
+        await startMatch();
+
+        status.textContent = 'Ready for another match.';
+    } catch (error) {
+        status.textContent = 'Failed to initialize Python.';
+        writeToTerminal(String(error) + '\n');
+    }
+}
+
+restartButton.addEventListener('click', startMatch);
+
+initialize();
+</script>
+</body>
+</html>
